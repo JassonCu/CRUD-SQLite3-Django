@@ -14,7 +14,7 @@ Edit Course Form:
 Commands to run the program:
 
 ```
-git clone https://github.com/Jake-Jake0037/CRUD-SQLite3-Django.git
+git clone https://github.com/JassonCu/CRUD-SQLite3-Django.git
 ```
 
 ```
