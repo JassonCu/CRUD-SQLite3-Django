@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'communication',
     'grade',
     'reports',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
