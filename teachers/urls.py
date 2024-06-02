@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.CourseListCreateAPIView.as_view())
+    path('', views.ProffesorList.as_view())
 ]
