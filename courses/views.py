@@ -1,14 +1,10 @@
-from django.shortcuts import render
 from .models import Course
 from .serializers import CourseSerializer
-from rest_framework import generics
+from rest_framework import viewsets
+
 # Create your views here.
 
 
-class CourseListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-
-class CourseRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer

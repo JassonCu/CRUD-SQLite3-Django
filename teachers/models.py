@@ -13,7 +13,7 @@ class Proffesor(models.Model):
     email = models.EmailField(verbose_name=_(
         'Email'), max_length=100, null=False, blank=False)
     phone = models.PositiveIntegerField(verbose_name=_(
-        'Telefono'), max_length=8, null=False, blank=False)
+        'Telefono'), null=False, blank=False)
     age = models.PositiveSmallIntegerField(
         verbose_name=_('Edad'), null=False, blank=False)
     address = models.CharField(verbose_name=_(
