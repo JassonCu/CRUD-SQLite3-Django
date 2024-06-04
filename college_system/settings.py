@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'students',
     'teachers',
     'communication',
-    'grade',
     'reports',
     'rest_framework',
 ]
