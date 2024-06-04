@@ -1,6 +1,8 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 from .validators.validate_phone import validate_phone
+from .validators.validate_age import validate_age
+
 # Create your tests here.
 
 
@@ -25,3 +27,25 @@ class PhoneValidationTestCase(TestCase):
         invalid_phone = '12a45678'  # Caracter 'a' no es un dígito
         with self.assertRaises(ValidationError):
             validate_phone(invalid_phone)
+
+
+class AgeValidationTestCase(TestCase):
+    def test_valid_age(self):
+        # Prueba una edad válida entre 0 y 100
+        valid_age = 25
+        try:
+            validate_age(valid_age)
+        except ValidationError:
+            self.fail('Se lanzó ValidationError para una edad válida.')
+
+    def test_negative_age(self):
+        # Prueba una edad negativa
+        negative_age = -5
+        with self.assertRaises(ValidationError):
+            validate_age(negative_age)
+
+    def test_over_limit_age(self):
+        # Prueba una edad mayor a 100
+        over_limit_age = 105
+        with self.assertRaises(ValidationError):
+            validate_age(over_limit_age)
