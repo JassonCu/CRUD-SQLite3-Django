@@ -1,0 +1,18 @@
+- model: college_system_authentication.role
+    pk: 1
+    fields:
+        name: Teacher
+        name_spanish: Maestro
+        description: Teacher
+- model: college_system_authentication.role
+    pk: 2
+    fields:
+        name: Student
+        name_spanish: Estudiante
+        description: Student
+- model: college_system_authentication.role
+    pk: 3
+    fields:
+        name: Admin
+        name_spanish: Admin
+        description: Admin
