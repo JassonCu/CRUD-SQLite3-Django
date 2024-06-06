@@ -1,1 +1,79 @@
+name: Django CI
 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run linter (flake8)
+      run: |
+        flake8 .
+
+    - name: Run code formatter (black)
+      run: |
+        black --check .
+
+    - name: Run static code analysis (pylint)
+      run: |
+        pylint your_django_app/
+
+    - name: Generate documentation
+      run: |
+        pip install sphinx
+        cd docs && make html
+
+    - name: Check for vulnerabilities (safety)
+      run: |
+        pip install safety
+        safety check -r requirements.txt
+
+    - name: Check code coverage (coverage)
+      run: |
+        pip install coverage
+        coverage run manage.py test
+        coverage report
+
+    - name: Upload coverage report to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+
+    - name: Check code quality (bandit)
+      run: |
+        pip install bandit
+        bandit -r your_django_app/
+
+    - name: Check for secrets (detect-secrets)
+      run: |
+        pip install detect-secrets
+        detect-secrets scan
+
+    - name: Check for sensitive data (git-secrets)
+      run: |
+        pip install git-secrets
+        git secrets --scan -r
+
+    - name: Generate documentation artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: documentation
+        path: docs/_build/html/
