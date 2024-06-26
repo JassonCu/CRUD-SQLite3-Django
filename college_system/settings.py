@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -112,8 +113,12 @@ WSGI_APPLICATION = 'college_system.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('POSTGRES_DB_DATABASE'),
+        'USER': config('POSTGRES_DB_USER'),
+        'PASSWORD': config('POSTGRES_DB_PASSWORD'),
+        'HOST': config('POSTGRES_LOCAL_HOST', default='localhost'),
+        'PORT': config('POSTGRES_LOCAL_PORT', default='5432'),
     }
 }
 
