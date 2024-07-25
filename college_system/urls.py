@@ -23,11 +23,12 @@ from rest_framework_simplejwt.views import (
 )
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    path('admin/', admin.site.urls),
-    path('apiv1.0/courses', include('courses.urls')),
-    path('apiv1.0/proffesors', include('teachers.urls')),
-    path('apiv1.0/students', include('students.urls')),
+    path('api/courses/', include('courses.urls')),
+    path('api/proffesors/', include('teachers.urls')),
+    path('api/students/', include('students.urls')),
+    path('api/authentication/', include('college_system_authentication.urls')),
 ]
