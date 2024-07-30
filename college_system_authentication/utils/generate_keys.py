@@ -1,6 +1,7 @@
 import secrets
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization
+from datetime import datetime, timedelta
 
 def generate_keys():
     # Generar el par de claves
@@ -23,7 +24,6 @@ def generate_keys():
 
     return public_pem.decode('utf-8'), private_pem.decode('utf-8')
 
-from datetime import datetime, timedelta
 
 def generate_token(length=32):
     return secrets.token_urlsafe(length)
