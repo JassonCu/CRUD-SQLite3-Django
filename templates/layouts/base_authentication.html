@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
+
+      {% endblock %}
+    </title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+    <link rel="stylesheet" href="{% static 'css/backend-plugin.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/backend.css' %}" />
+  </head>
+  <body>
+    <!-- loader Start -->
+    <div id="loading">
+      <div id="loading-center"></div>
+    </div>
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- Backend Bundle JavaScript -->
+    <script src="{% static 'js/backend-bundle.min.js' %}"></script>
+
+    <!-- Chart Custom JavaScript -->
+    <script async src="{% static 'js/slider.js' %}"></script>
+
+    <!-- app JavaScript -->
+    <script src="{% static 'js/app.js' %}"></script>
+
+    <script src="{% static 'vendor/moment.min.js' %}"></script>
+  </body>
+</html>
