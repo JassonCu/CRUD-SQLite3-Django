@@ -27,14 +27,6 @@ class UserAccountManager(BaseUserManager):
 
 
 class UserAccount(AbstractUser):
-    token_email_validation = models.CharField(
-        _('Token para validar correo'), max_length=100, blank=False, default='')
-    token_password_reset = models.CharField(
-        _('Token para reiniciar contraseña'), max_length=100, blank=False, default='')
-    token_expiration = models.DateTimeField(
-        _('Fecha valida para token'), null=True)
-    public_key = models.TextField(_('Clave pública'), blank=False, default='')
-    private_key = models.TextField(_('Clave privada'), blank=False, default='')
     phone_number = models.CharField(
         _('Número de teléfono'), max_length=25, blank=False, default='')
     role = models.ManyToManyField(

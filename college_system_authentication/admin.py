@@ -9,5 +9,4 @@ class RoleAdmin(admin.ModelAdmin):
 
 @admin.register(UserAccount)
 class UserAccountAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email', 'phone_number',
-                    'public_key', 'private_key')
+    list_display = ('username', 'email', 'phone_number')
