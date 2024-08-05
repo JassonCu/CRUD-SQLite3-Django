@@ -29,6 +29,9 @@ class UserAccountManager(BaseUserManager):
 class UserAccount(AbstractUser):
     phone_number = models.CharField(
         _('Número de teléfono'), max_length=25, blank=False, default='')
+    accepted_terms = models.BooleanField(
+        _('Aceptó los términos y condiciones'), default=False
+    )
     role = models.ManyToManyField(
         'Role',
         blank=True
