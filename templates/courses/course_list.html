@@ -1,0 +1,39 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}
+  Lista de cursos
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <table id="coursesTable" class="display">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Fecha de inicio</th>
+          <th>Fecha de final</th>
+          <th>Créditos</th>
+          <th>Modalidad</th>
+          <th>Estudiantes máximos</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      toastr.success('You clicked Success toast')
+      const table = $('#coursesTable').DataTable({
+        ajax: {
+          url: '{% url "course_list" %}',
+          dataSrc: 'data'
+        },
+        columns: [{ data: 'code' }, { data: 'name' }, { data: 'description' }, { data: 'start_date' }, { data: 'end_date' }, { data: 'credits' }, { data: 'modality' }, { data: 'max_students' }, { data: 'status' }]
+      })
+    })
+  </script>
+{% endblock %}
