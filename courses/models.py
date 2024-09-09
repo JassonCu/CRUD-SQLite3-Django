@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
+from teachers.models import Teacher
 
 # Create your models here.
 
@@ -52,11 +54,11 @@ class Course(models.Model):
         verbose_name=_('Status')
     )
     created_at = models.DateTimeField(
-        auto_now_add=True,
+        default=timezone.now,
         verbose_name=_('Created At')
     )
     updated_at = models.DateTimeField(
-        auto_now=True,
+        default=timezone.now,
         verbose_name=_('Updated At')
     )
 
@@ -67,6 +69,12 @@ class Course(models.Model):
             super().save(update_fields=['code'])  # Guarda el campo 'code' actualizado
         else:
             super().save(*args, **kwargs)  # Guarda normalmente para objetos existentes
+
+    teachers = models.ManyToManyField(
+        Teacher,
+        related_name='courses',
+        verbose_name=_('Teachers')
+    )
 
     def __str__(self):
         return "{} ({})".format(self.name, self.code)
